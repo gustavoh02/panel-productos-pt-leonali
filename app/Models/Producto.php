@@ -12,7 +12,7 @@ class Producto extends Model
         'precio',
         'stock',
         'categoria',
-        'marca',
+        'origen',
         'imagen_url'
     ];
 }

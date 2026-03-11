@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    // Listar todos
+    // listar todos
     public function index() {
         $productos = Producto::all();
         return response()->json($productos);
     }
 
-    // Traer uno por ID
+    // traer por ID
     public function show($id) {
         $producto = Producto::find($id);
         if (!$producto) {
@@ -30,7 +30,7 @@ class ProductoController extends Controller
             'precio'      => $request->precio,
             'stock'       => $request->stock,
             'categoria'   => $request->categoria,
-            'marca'       => $request->marca,
+            'origen'       => $request->origen,
             'imagen_url'  => $request->imagen_url
         ]);
         return response()->json($producto, 201);
@@ -47,13 +47,13 @@ class ProductoController extends Controller
         $producto->precio      = $request->precio;
         $producto->stock       = $request->stock;
         $producto->categoria   = $request->categoria;
-        $producto->marca       = $request->marca;
+        $producto->origen       = $request->origen;
         $producto->imagen_url  = $request->imagen_url;
         $producto->save();
         return response()->json($producto);
     }
 
-    // Eliminar producto
+    // eliminar producto
     public function destroy($id) {
         Producto::destroy($id);
         return response()->json(['mensaje' => 'Producto eliminado']);
