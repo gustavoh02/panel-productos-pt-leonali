@@ -11,10 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->validateCsrfTokens(except: ['api/*']);
-        $middleware->trustHosts(at: ['*']);
-    })
+    ->withMiddleware(function (Middleware $middleware) {
+    $middleware->validateCsrfTokens(except: ['api/*']);
+    // forzar el manejo de CORS
+    $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+})
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
